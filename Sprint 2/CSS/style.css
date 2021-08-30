@@ -1,4 +1,4 @@
-*{
+* {
     font-family: Arial;
 }
 
@@ -8,17 +8,18 @@ h1 {
     padding: 10px;
 }
 
-.navbar{
+.navbar {
     height: 100px;
     width: auto;
     background-color: #7293e1;
 }
 
-.navlink{
+.navlink {
     list-style-type: none;
 }
 
-li, a {
+li,
+a {
     text-decoration: none;
     font-size: 22px;
 }
@@ -33,7 +34,7 @@ li, a {
 }
 
 .navlink li a:hover {
-    background-color:aqua;
+    background-color: aqua;
     color: blue;
     padding: 12px 15px;
     border-radius: 5px;
@@ -43,12 +44,12 @@ li, a {
     margin-right: 30px;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
 }
 
-.center{
+.center {
     width: 1200px;
     margin: 0 auto;
 }
@@ -61,7 +62,7 @@ body{
     background-position: center;
 }
 
-.roundborder{
+.roundborder {
     border-color: black;
     border-width: 2px;
     border-style: solid;
@@ -72,6 +73,7 @@ body{
     float: left;
     margin-right: 10px;
 }
+
 
 /* OK-NOTOK Bar
     ---------------------------------------------------
@@ -84,25 +86,27 @@ body{
     margin-top: 10px;
 }
 
-.okay {
+#okay {
     background-color: blue;
-    width: 70%;
+    width: 50%;
     height: 10px;
     float: left;
     border-radius: 25px;
 }
 
+
 /*Some float stuff
     ---------------------------------------------------
 */
 
-.floatl{
+.floatl {
     float: left!important;
 }
 
-.floatr{
+.floatr {
     float: right!important;
 }
+
 
 /*Buttons
     ---------------------------------------------------
@@ -181,11 +185,12 @@ footer {
     padding: 0 0 25px 0;
 }
 
+
 /*OK-NOTOK Counters
     ---------------------------------------------------
 */
 
-.num-div{
+.num-div {
     width: 1200px;
     margin: 100px 0;
     display: flex;
