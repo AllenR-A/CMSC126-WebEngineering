@@ -18,3 +18,5 @@
 	above 50 first
 	then onwards, time is affected every 30 reactions. 
 	ex: 80, 110, 140,...
+
+	VSCode verify test
