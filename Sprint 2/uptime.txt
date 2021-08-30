@@ -1,0 +1,20 @@
+	OK		NOTOK	Total	Time
+	-		-		-		30min (default)
+	100%	0%		50+		+2hr
+	91%		9%		50+		+2hr ====================== threshold
+	90%		10%		50+		+1hr ====================== threshold
+	75%		25%		50+		+1hr
+	66%		34%		50+		+1hr ====================== threshold
+	65%		35%		50+		none ====================== threshold
+	50%		50%		50+		none
+	35%		65%		50+		none ====================== threshold
+	34%		66%		50+		-1hr ====================== threshold
+	25%		75%		50+		-1hr
+	10%		90%		50+		-1hr
+	9%		91%		50+		-(remaining time)========== threshold
+	0%		100%	50+		-(remaining time)========== threshold
+	
+	
+	above 50 first
+	then onwards, time is affected every 30 reactions. 
+	ex: 80, 110, 140,...

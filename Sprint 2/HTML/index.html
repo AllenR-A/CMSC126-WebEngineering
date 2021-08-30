@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="RandoIMG is a site that has a single image whose time being on display is dictated by how many people are OK/NOT OK with it.">
+		<meta name="author" content="AllenR">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>RandoIMG</title>
+		<link rel="stylesheet" href="../CSS/style.css">
+	</head>
+	<body style="background-color:lightblue;">
+		<div class="center">
+			<header>
+				<nav class="navbar roundborder">
+					<h1 class="floatl">RandoIMG</h1>
+					<ul class="navlink">
+						<li class="marginr"><a href="contact.html">Contact</a></li>
+						<li class=""><a href="about.html">About</a></li>
+					</ul>
+				</nav>
+			</header>
+            <main>
+                <br>
+                <br>
+                <div class="image roundborder"></div>
+                <div class="bar roundborder">
+                    <div class="okay"></div>
+                </div>
+                <button type="button" class="roundborder btn-ok"><b>OK</b></button>
+                <button type="button" class="roundborder btn-nk"><b>NOT OK</b></button>
+                <div class="num-div">
+                    <div class="roundborder ok-num">0</div>
+                    <div class="roundborder nk-num">0</div>
+                </div>
+            </main>
+            <footer>
+                <button type="button" class="btn-upload roundborder">
+                    <span class="upload-text">
+                        <span><small>Replace IMG</small><br><var id="time">Time left: 60hrs 60mins</var></span> <!-- I put <div> here so that replace & time doesn't get separated when applying inline-flex-->
+                    </span>
+                    <span class="upload-icon">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                    </span>
+                </button>
+            </footer>
+			<!--
+			Scripts
+			-->
+			<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+			<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		</div>
+	</body>
+</html>
