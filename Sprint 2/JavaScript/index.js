@@ -76,12 +76,12 @@ let pMin = phtime.getUTCMinutes();
 let pSec = phtime.getUTCSeconds();
 let pMill = phtime.getUTCMilliseconds();
 
-const maxtime = new Date(Date.UTC(pYear, pMonth, pDay, 15, 59, 59, 999)); //15+8 = 23 for GMT+8
+let maxtime = new Date(Date.UTC(pYear, pMonth, pDay, 15, 59, 59, 999)); //15+8 = 23 for GMT+8
 let finsihtime = new Date(Date.UTC(pYear, pMonth, pDay, pHour + 1, pMin, pSec, pMill)); //(add hours to it)
 
 console.log("Current: " + phtime);
-console.log("MAX:" + maxtime);
-console.log("End Time" + finsihtime);
+console.log("MAX: " + maxtime);
+console.log("End Time: " + finsihtime);
 
 
 //updates bar and upload button every click
@@ -98,30 +98,49 @@ function updatebar() {
             if (percent <= 14) {
                 delHr(24);
                 console.log("Removed time");
+                maxtriggerDel();
             } else if (percent <= 25) {
                 delHr(1.5);
                 console.log("Removed 1.5 hrs");
+                maxtriggerDel();
             } else if (percent <= 34) {
                 delHr(.5);
                 console.log("Removed 30 mins");
+                maxtriggerDel();
             } else if (percent <= 65) {
                 console.log("Time stays the same"); //nothing happens
             } else if (percent <= 75) {
                 addHr(.5);
                 console.log("Added .5 hrs");
+                maxtriggerAdd();
             } else if (percent <= 85) {
                 addHr(1.5);
                 console.log("Added 1.5 hrs");
+                maxtriggerAdd();
             } else if (percent <= 100) {
                 addHr(2.5);
                 console.log("Added 2.5 hrs");
+                maxtriggerAdd();
             }
         }
     }
 
-    if (finsihtime.getUTCHours() > 15) { //sets finish time to the max when reached (15+8 = 23 for GMT+8)
-        console.log("Maximum time reached.");
-        finsihtime = maxtime;
+    function maxtriggerAdd() {
+        if (finsihtime.getUTCHours() > 15) { //sets finish time to the max when reached (15+8 = 23 for GMT+8)
+            console.log("Maximum time reached.");
+            finsihtime.setTime(maxtime.getTime()); //Will always set it to the limit no matter how much is added.
+            //finsihtime = maxtime;
+        }
+        console.log("MAX: " + maxtime);
+        console.log("End Time: " + finsihtime);
+    }
+
+    function maxtriggerDel() {
+        if (finsihtime.getUTCHours() > 15) { //sets finish time to the max when reached (15+8 = 23 for GMT+8)
+            console.log("Maximum time reached but some time removed.");
+        }
+        console.log("MAX: " + maxtime);
+        console.log("End Time: " + finsihtime);
     }
 }
 
