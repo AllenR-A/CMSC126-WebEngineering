@@ -162,22 +162,40 @@ footer {
 
 .btn-upload {
     height: 120px;
+    width: 420px!important;
     display: flex;
-    background-color: grey;
     padding: 0 !important;
     overflow: hidden;
     justify-content: center;
     align-items: center;
 }
 
+#upload-color {
+    background-color: rgb(128, 128, 128);
+}
+
+#upload-color:hover {
+    transition: all 0.25s ease 0s;
+}
+
+#upload-color:active {
+    transition: all 0s linear 0s;
+    color: #0000ac;
+    background-color: white!important;
+}
+
 .upload-text,
 .upload-icon {
     display: flex;
-    padding: 0 15px;
 }
 
 .upload-icon {
     font-size: 2em;
+}
+
+#icon,
+#text {
+    padding: 0 15px;
 }
 
 #time {

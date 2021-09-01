@@ -24,24 +24,32 @@
 
 Revised:
 
-	OK		NOTOK	Total	Time
-	-		-		-		1hr (default)
-	100%	0%		25+		+2hr
-	86%		14%		25+		+2hr	====================== threshold
-	85%		15%		25+		+1.5hr	====================== threshold
-	75%		25%		25+		+1.5hr
-	66%		34%		25+		+1.5hr	====================== threshold
-	65%		35%		25+		none	====================== threshold
-	50%		50%		25+		none
-	35%		65%		25+		none	====================== threshold
-	34%		66%		25+		-1.5hr	====================== threshold
-	25%		75%		25+		-1.5hr
-	15%		85%		25+		-1.5hr
-	14%		86%		25+		-(remaining time)============= threshold
-	0%		100%	25+		-(remaining time)============= threshold
+	OK		Total	Time
+	-		-		1hr (default)
+	100%	25+		+2.5hr
+	86%		25+		+2.5hr	
+	============================================== threshold
+	85%		25+		+1.5hr	
+	74%		25+		+1.5hr
+	============================================== threshold
+	75%		25+		+30min
+	66%		25+		+30min
+	============================================== threshold
+	65%		25+		none	
+	50%		25+		none
+	35%		25+		none	
+	============================================== threshold
+	34%		25+		-30min	
+	26%		25+		-30min	
+	============================================== threshold
+	25%		25+		-1.5hr
+	15%		25+		-1.5hr
+	============================================== threshold
+	14%		25+		-(remaining time)
+	0%		25+		-(remaining time)
 	
 	max 24hrs
 	
-	above 50 first
+	above 25 first
 	then onwards, time is affected every 15 reactions. 
 	ex: 40, 55, 70, 85, 100, 115, 130, 145..
