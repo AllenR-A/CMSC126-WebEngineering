@@ -2,17 +2,19 @@ let ok = 0;
 let notok = 0;
 let uploadState = 0; // 0-> grey (disabled) 1-> (enabled)
 
-function okcount() {
+//3 Button Functions
+
+function okcount() { //OK Button
     document.getElementById('ok-num').innerHTML = ++ok;
     updatebar();
 }
 
-function notokcount() {
+function notokcount() { //NOT OK Button
     document.getElementById('nk-num').innerHTML = ++notok;
     updatebar();
 }
 
-function upload() {
+function upload() { //Upload Button
     if (uploadState === 0) {
         alert("You can't upload yet.");
     } else {
@@ -29,6 +31,8 @@ function upload() {
 //console.log(uploadBG)
 
 
+//==================Hover effects for==================
+//====================upload button====================
 document.getElementById("upload-color").onmouseover = function() { mouseOver() };
 
 function mouseOver() {
@@ -72,7 +76,7 @@ function updatebar() {
                 delHr(.5);
                 console.log("Removed 30 mins");
             } else if (percent <= 65) {
-                //nothing happens
+                console.log("Time stays the same"); //nothing happens
             } else if (percent <= 75) {
                 addHr(.5);
                 console.log("Added .5 hrs");
@@ -87,7 +91,7 @@ function updatebar() {
     }
 }
 
-//XMLHttpRequest using jQuery's Ajax to get Philippine Internet time (GMT+8).
+//XMLHttpRequest using jQuery's Ajax to get Philippine Internet time (GMT+8) instead of relying on the local computer's time.
 
 let phtimejson;
 $.ajax({

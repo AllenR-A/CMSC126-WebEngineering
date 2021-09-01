@@ -2,6 +2,11 @@
     font-family: Arial;
 }
 
+
+/* Header stuff
+    ---------------------------------------------------
+*/
+
 h1 {
     margin: 15px;
     font-size: 42px;
@@ -44,15 +49,28 @@ a {
     margin-right: 30px;
 }
 
+
+/*  ---------------------------------------------------  */
+
 body {
     margin: 0;
     padding: 0;
 }
 
+
+/* Puts the site contents in the center
+    ---------------------------------------------------
+*/
+
 .center {
     width: 1200px;
     margin: 0 auto;
 }
+
+
+/* Image settings
+    ---------------------------------------------------
+*/
 
 .image {
     height: 760px;
