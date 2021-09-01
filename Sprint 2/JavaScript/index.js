@@ -54,6 +54,35 @@ function mouseOut() {
     }
 
 }
+//XMLHttpRequest using jQuery's Ajax to get Philippine Internet time (GMT+8) instead of relying on the local computer's time.
+
+let phtimejson;
+$.ajax({
+    async: false, //enabling sync on't allow me to retreive a variable.
+    dataType: "json",
+    url: "https://worldtimeapi.org/api/timezone/Asia/Manila",
+    success: function(data) { phtimejson = data.datetime; }
+});
+
+//new Date(year, month, day, hours, minutes, seconds, milliseconds)
+//console.log(phtimejson);
+
+let phtime = new Date(phtimejson);
+let pYear = phtime.getUTCFullYear();
+let pMonth = phtime.getUTCMonth();
+let pDay = phtime.getUTCDate();
+let pHour = phtime.getUTCHours();
+let pMin = phtime.getUTCMinutes();
+let pSec = phtime.getUTCSeconds();
+let pMill = phtime.getUTCMilliseconds();
+
+const maxtime = new Date(Date.UTC(pYear, pMonth, pDay, 15, 59, 59, 999)); //15+8 = 23 for GMT+8
+let finsihtime = new Date(Date.UTC(pYear, pMonth, pDay, pHour + 1, pMin, pSec, pMill)); //(add hours to it)
+
+console.log("Current: " + phtime);
+console.log("MAX:" + maxtime);
+console.log("End Time" + finsihtime);
+
 
 //updates bar and upload button every click
 function updatebar() {
@@ -89,36 +118,12 @@ function updatebar() {
             }
         }
     }
+
+    if (finsihtime.getUTCHours() > 15) { //sets finish time to the max when reached (15+8 = 23 for GMT+8)
+        console.log("Maximum time reached.");
+        finsihtime = maxtime;
+    }
 }
-
-//XMLHttpRequest using jQuery's Ajax to get Philippine Internet time (GMT+8) instead of relying on the local computer's time.
-
-let phtimejson;
-$.ajax({
-    async: false, //enabling sync on't allow me to retreive a variable.
-    dataType: "json",
-    url: "https://worldtimeapi.org/api/timezone/Asia/Manila",
-    success: function(data) { phtimejson = data.datetime; }
-});
-
-//new Date(year, month, day, hours, minutes, seconds, milliseconds)
-//console.log(phtimejson);
-
-let phtime = new Date(phtimejson);
-let pYear = phtime.getUTCFullYear();
-let pMonth = phtime.getUTCMonth();
-let pDay = phtime.getUTCDate();
-let pHour = phtime.getUTCHours();
-let pMin = phtime.getUTCMinutes();
-let pSec = phtime.getUTCSeconds();
-let pMill = phtime.getUTCMilliseconds();
-
-const maxtime = new Date(Date.UTC(pYear, pMonth, pDay, 15, 59, 59, 999)); //15+8 = 23 for GMT+8
-let finsihtime = new Date(Date.UTC(pYear, pMonth, pDay, pHour + 1, pMin, pSec, pMill)); //(add hours to it)
-
-console.log("Current: " + phtime);
-console.log("MAX:" + maxtime);
-console.log("End Time" + finsihtime);
 
 //=========================Add-Subtract Hours=========================
 function addHr(h) { //usage: addHr(hour)
