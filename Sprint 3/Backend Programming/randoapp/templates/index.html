@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="RandoIMG is a site that has a single image whose time being on display is dictated by how many people are OK/NOT OK with it.">
+    <meta name="author" content="AllenR">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandoIMG</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body style="background-color:lightblue;">
+    <div class="center">
+        <!-- This div that contains all the site elements is centered -->
+        <header>
+            <nav class="navbar roundborder">
+                <h1 class="floatl">RandoIMG</h1>
+                <ul class="navlink">
+                    <li class="marginr"><a href="contact/">Contact</a></li>
+                    <li class=""><a href="about/">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <br>
+            <br>
+            <!-- This is the Main Image -->
+            <div id="image" class="roundborder"></div>
+            <!-- This is the like/dislike bar thing -->
+            <div class="bar roundborder">
+                <!-- This is the Blue Bar -->
+                <div id="okay"></div>
+            </div>
+            <button type="button" class="roundborder btn-ok" onclick="okcount()"><b>OK</b></button>
+            <button type="button" class="roundborder btn-nk" onclick="notokcount()"><b>NOT OK</b></button>
+            <!-- Counters start at 0 -->
+            <div class="num-div">
+                <div id="ok-num" class="roundborder ok-num">{{ ok }}</div>
+                <div id="nk-num" class="roundborder nk-num">{{ notok }}</div>
+            </div>
+        </main>
+        <footer id="foot">
+            <form id="uploadStateForm" action="uploadset/" method="POST">
+                {% csrf_token %}
+                <input type="text" id="uploadState" name="uploadstate" value="{{uploadstate}}" />
+            </form>
+            <form id="timeFormOk" action="ok/" method="POST">
+                {% csrf_token %}
+                <input type="text" id="timeLeftInputOk" name="timeleftin" value="{{timeleft}}" />
+            </form>
+            <form id="timeFormNotOk" action="notok/" method="POST">
+                {% csrf_token %}
+                <input type="text" id="timeLeftInputNotOk" name="timeleftin" value="{{timeleft}}" />
+            </form>
+            <form id="uploadForm" name="uploadform" action="upload/" method="POST" enctype="multipart/form-data">
+                <!-- multipart/form-data required when uploading files-->
+                {% csrf_token %}
+                <input type="text" id="timeLeftUploadIn" name="timeleftin" />
+                <label type="submit" id="upload-label" class="btn-upload roundborder" onclick="upload()">
+                    {% if uploadstate == 1 %}
+                    <input type="file" name="imageupload" onchange="document.getElementById('uploadForm').submit();"/>
+                    {% else %}
+                    {% endif %}
+                    <span id="text" class="upload-text">
+                        <span class="center-text"><small>Replace IMG</small><br><var id="time">Time left: 60hrs 60mins 60secs</var></span> <!-- I put <div> here so that replace & time doesn't get separated when applying inline-flex-->
+                    </span>
+                    <span id="icon" class="upload-icon">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                    </span>
+                </label>
+            </form>
+        </footer>
+    </div>
+    <!--
+		Icon module script
+	-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!--
+		Main script + (jQuery from Google)
+	-->
+    <script>
+        let ok = parseInt("{{ok}}"); //Used for barupdate()
+        let notok = parseInt("{{notok}}"); //Used for barupdate()
+        let uploadState = parseInt("{{uploadstate}}");
+        let databasetime = "{{timeleft}}";
+        let image = "{{dbimage}}";
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+
+</html>

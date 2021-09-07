@@ -1,0 +1,6 @@
+Status
+- ok
+- notok
+- image
+- uploadstate
+- timeleft

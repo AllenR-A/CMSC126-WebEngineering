@@ -1,0 +1,266 @@
+* {
+    font-family: Arial;
+}
+
+
+/* Header stuff
+    ---------------------------------------------------
+*/
+
+h1 {
+    margin: 15px;
+    font-size: 42px;
+    padding: 10px;
+}
+
+.navbar {
+    height: 100px;
+    width: auto;
+    background-color: #7293e1;
+}
+
+.navlink {
+    list-style-type: none;
+}
+
+li,
+a {
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.navlink li {
+    float: right;
+    padding: 22px;
+}
+
+.navlink li a {
+    transition: all 0.4s ease 0s;
+}
+
+.navlink li a:hover {
+    background-color: aqua;
+    color: blue;
+    padding: 12px 15px;
+    border-radius: 5px;
+}
+
+.marginr {
+    margin-right: 30px;
+}
+
+
+/*  ---------------------------------------------------  */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Puts the site contents in the center
+    ---------------------------------------------------
+*/
+
+.center {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* Image settings
+    ---------------------------------------------------
+*/
+
+#image {
+    height: 760px;
+    width: 1200px;
+    background-image: url("/static/img/placeholder.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.roundborder {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 25px;
+}
+
+.creatorimg {
+    float: left;
+    margin-right: 10px;
+}
+
+
+/* OK-NOTOK Bar
+    ---------------------------------------------------
+*/
+
+.bar {
+    background-color: crimson;
+    width: 1200px;
+    height: 10px;
+    margin-top: 10px;
+}
+
+#okay {
+    background-color: blue;
+    width: 50%;
+    height: 10px;
+    float: left;
+    border-radius: 25px;
+}
+
+
+/*Some float stuff
+    ---------------------------------------------------
+*/
+
+.floatl {
+    float: left!important;
+}
+
+.floatr {
+    float: right!important;
+}
+
+
+/*Buttons
+    ---------------------------------------------------
+*/
+
+.btn-ok,
+.btn-nk,
+.btn-upload {
+    width: 350px;
+    font-size: 32px;
+    color: white;
+    padding: 20px;
+    margin: 10px 0 0 0;
+}
+
+.btn-ok {
+    background-color: blue;
+    float: left;
+}
+
+.btn-nk {
+    background-color: crimson;
+    float: right;
+}
+
+.btn-ok:hover {
+    transition: all 0.25s ease 0s;
+    background-color: #0000ac;
+}
+
+.btn-nk:hover {
+    transition: all 0.25s ease 0s;
+    background-color: #ac0000;
+}
+
+.btn-ok:active {
+    transition: all 0s linear 0s;
+    color: blue;
+    background-color: white;
+}
+
+.btn-nk:active {
+    transition: all 0s linear 0s;
+    color: crimson;
+    background-color: white;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-upload {
+    height: 120px;
+    width: 420px!important;
+    display: flex;
+    padding: 0 !important;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+#upload-label {
+    background-color: rgb(128, 128, 128);
+}
+
+#upload-label:hover {
+    transition: all 0.25s ease 0s;
+}
+
+#upload-label:active {
+    transition: all 0s linear 0s;
+    color: #0000ac;
+    background-color: white!important;
+}
+
+
+/*[type="file"] */
+
+input {
+    /* Moves it out of the way instead of using "display:none" to hide to prevent validation issues*/
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+}
+
+.upload-text,
+.upload-icon {
+    display: flex;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.upload-icon {
+    font-size: 2em;
+}
+
+#icon,
+#text {
+    padding: 0 15px;
+}
+
+#time {
+    font-size: 0.55em;
+    padding: 0 0 25px 0;
+}
+
+
+/*OK-NOTOK Counters
+    ---------------------------------------------------
+*/
+
+.num-div {
+    width: 1200px;
+    margin: 100px 0;
+    display: flex;
+}
+
+.ok-num,
+.nk-num {
+    width: 300px;
+    font-size: 28px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.ok-num {
+    color: blue;
+    margin: 0 550px 0 0;
+}
+
+.nk-num {
+    color: red;
+}

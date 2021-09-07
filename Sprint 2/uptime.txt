@@ -52,4 +52,4 @@ Revised:
 	
 	above 25 first
 	then onwards, time is affected every 15 reactions. 
-	ex: 40, 55, 70, 85, 100, 115, 130, 145..
+	ex: 40, 55, 70, 85, 100, 115, 130, 145, 160, 175, 190..
