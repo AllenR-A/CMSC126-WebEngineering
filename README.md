@@ -13,7 +13,7 @@ A CMSC 126 Project using Scrum
   - [CSS video](https://youtu.be/bWrd1prxcfk)
   - [JavaScript video](https://youtu.be/jVKdC2-tHBU)
 
-+ [Sprint 2](#) [IN-PROGRESS] <br />
++ [Sprint 3](#) [IN-PROGRESS] <br />
   - [SCRUM 3 video](#)
   - [Backend Programming video](#)
   - [Database video](#)
