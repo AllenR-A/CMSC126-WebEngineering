@@ -13,7 +13,7 @@ A CMSC 126 Project using Scrum
   - [CSS video](https://youtu.be/bWrd1prxcfk)
   - [JavaScript video](https://youtu.be/jVKdC2-tHBU)
 
-+ [Sprint 3](https://www.youtube.com/playlist?list=PLwj66Tp6NV33lU9l0TmKksYiFXwv-Tlxn) [IN-PROGRESS] <br />
++ [Sprint 3](https://www.youtube.com/playlist?list=PLwj66Tp6NV33lU9l0TmKksYiFXwv-Tlxn) [DONE] <br />
   - [SCRUM 3 video](https://youtu.be/Sa8evcIhLeA)
-  - [Backend Programming video - Django](#)
-  - [Database video - MySQL using Django ORM](#)
+  - [Backend Programming video - Django](https://youtu.be/QDwXEHp2FO4)
+  - [Database video - MySQL using Django ORM](https://youtu.be/Y6mgktxTIII)
