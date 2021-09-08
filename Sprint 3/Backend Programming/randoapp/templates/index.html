@@ -33,8 +33,8 @@
                 <!-- This is the Blue Bar -->
                 <div id="okay"></div>
             </div>
-            <button type="button" class="roundborder btn-ok" onclick="okcount()"><b>OK</b></button>
-            <button type="button" class="roundborder btn-nk" onclick="notokcount()"><b>NOT OK</b></button>
+            <button type="button" class="roundborder btn-ok" onclick="addDel('ok')"><b>OK</b></button>
+            <button type="button" class="roundborder btn-nk" onclick="addDel('nk')"><b>NOT OK</b></button>
             <!-- Counters start at 0 -->
             <div class="num-div">
                 <div id="ok-num" class="roundborder ok-num">{{ ok }}</div>
@@ -42,18 +42,22 @@
             </div>
         </main>
         <footer id="foot">
+            <!-- Form for setting upload state -->
             <form id="uploadStateForm" action="uploadset/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="uploadState" name="uploadstate" value="{{uploadstate}}" />
             </form>
+            <!-- Form for setting time (& increment ok count) -->
             <form id="timeFormOk" action="ok/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="timeLeftInputOk" name="timeleftin" value="{{timeleft}}" />
             </form>
+            <!-- Form for setting time (& increment not ok count) -->
             <form id="timeFormNotOk" action="notok/" method="POST">
                 {% csrf_token %}
                 <input type="text" id="timeLeftInputNotOk" name="timeleftin" value="{{timeleft}}" />
             </form>
+            <!-- Form for uploading image & resetting values) -->
             <form id="uploadForm" name="uploadform" action="upload/" method="POST" enctype="multipart/form-data">
                 <!-- multipart/form-data required when uploading files-->
                 {% csrf_token %}

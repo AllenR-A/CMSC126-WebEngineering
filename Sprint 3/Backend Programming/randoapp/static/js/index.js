@@ -1,26 +1,6 @@
-//let ok = 0; //read from database every load (so, I'm not supposed to use these anymore)
-//let notok = 0; //read from database every load (so, I'm not supposed to use these anymore)
-//let uploadState = 0; // 0-> grey (disabled) 1-> (enabled)
-
-//3 Button Functions
-
 let finsihtime = new Date(databasetime);
 
-function okcount() { //OK Button
-    //document.getElementById('ok-num').innerHTML = ++ok; //write to database every click (so, I'm not supposed to use these anymore)
-    //updatebar();
-    addDel('ok');
-    //window.location.href = "ok/";
-}
-
-function notokcount() { //NOT OK Button
-    //document.getElementById('nk-num').innerHTML = ++notok; //write to database every click (so, I'm not supposed to use these anymore)
-    //updatebar();
-    addDel('nk');
-    //window.location.href = "notok/";
-}
-
-///Upload function is in line 88
+///Upload function is in line 69
 
 //===code that became obsolete since for some reason===
 //let uploadbtn = document.getElementById('upload-label');
@@ -54,6 +34,7 @@ function mouseOut() {
     }
 
 }
+
 //XMLHttpRequest using jQuery's Ajax to get Philippine Internet time (GMT+8) instead of relying on the local computer's time.
 
 let phtimejson;
@@ -105,7 +86,7 @@ function updatebar() {
     console.log('updatebar finish: ' + finsihtime);
 }
 
-function addDel(selector) { //keep passing selector until it reaches [else statement of total > 24] or maxtrigger functions
+function addDel(selector) { //Increment Ok/Not Ok & set deadline (keep passing selector until it reaches [else statement of total > 24] or maxtrigger functions)
     total = ok + notok;
     let percent = ((ok / total) * 100).toFixed();
     if (total >= 24) { //This is set to [>= 24] so that it runs just before a total of 25 (kinda giving the ilusion that it ran when reaching 25)
@@ -145,34 +126,32 @@ function addDel(selector) { //keep passing selector until it reaches [else state
             }
         } else { //Enable incrementing ok/not ok inbetween every 15 reactions [24 reactions and above]
             if (selector == 'ok') {
-                document.getElementById("timeFormOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.getElementById("timeFormOk").submit(); //Increment Ok count
             } else if (selector == 'nk') {
-                document.getElementById("timeFormNotOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+                document.getElementById("timeFormNotOk").submit(); //Increment Not Ok count
             }
         }
     } else { //Enable incrementing ok/not ok prior to 24 reactions
         if (selector == 'ok') {
-            document.getElementById("timeFormOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormOk").submit(); //Increment Ok count
         } else if (selector == 'nk') {
-            document.getElementById("timeFormNotOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormNotOk").submit(); //Increment Not Ok count
         }
     }
 
     function maxtriggerAdd(selector) {
         if (finsihtime.getUTCHours() > 15) { //sets finish time to the max when reached (15+8 = 23 for GMT+8)
             console.log("Maximum time reached.");
-            finsihtime.setTime(maxtime.getTime()); //Will always set it to the limit no matter how much is added.////////////////////////////////////////////////////////////////////////////////////////////////////
-            document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-            document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-            document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-            //finsihtime = maxtime;
+            finsihtime.setTime(maxtime.getTime()); //Will always set it to the limit no matter how much is added.
+            document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text //Set Ok button form time to the maximum
+            document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text //Set Not Ok button form time to the maximum
             console.log("MAX: " + maxtime);
             console.log("End Time: " + finsihtime);
         }
         if (selector == 'ok') {
-            document.getElementById("timeFormOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormOk").submit(); //Increment Ok count
         } else if (selector == 'nk') {
-            document.getElementById("timeFormNotOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormNotOk").submit(); //Increment Not Ok count
         }
     }
 
@@ -183,9 +162,9 @@ function addDel(selector) { //keep passing selector until it reaches [else state
         console.log("MAX: " + maxtime);
         console.log("End Time: " + finsihtime);
         if (selector == 'ok') {
-            document.getElementById("timeFormOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormOk").submit(); //Increment Ok count
         } else if (selector == 'nk') {
-            document.getElementById("timeFormNotOk").submit(); ////////////////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("timeFormNotOk").submit(); //Increment Not Ok count
         }
     }
 
@@ -193,26 +172,18 @@ function addDel(selector) { //keep passing selector until it reaches [else state
 
 //=========================Add-Subtract Hours=========================
 function addHr(h) { //usage: addHr(hour)
-    finsihtime.setTime(finsihtime.getTime() + (h * 60 * 60 * 1000)); ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
+    finsihtime.setTime(finsihtime.getTime() + (h * 60 * 60 * 1000)); //Add h hours
+    document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text //Add h hours to Ok button form time
+    document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text //Add h hours to Not Ok button form time
+    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text //Add h hours to Upload form time
 }
-
-//function addMin(m) { //usage: addMin(mins)
-//    finsihtime.setTime(finsihtime.getTime() + (m * 60 * 1000));
-//}
 
 function delHr(h) { //usage: delHr(hour)
-    finsihtime.setTime(finsihtime.getTime() - (h * 60 * 60 * 1000)); ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
+    finsihtime.setTime(finsihtime.getTime() - (h * 60 * 60 * 1000)); //Remove h hours
+    document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text //Remove h hours to Ok button form time
+    document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text //Remove h hours to Not Ok button form time
+    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text //Remove h hours to Upload form time
 }
-
-//function delMin(m) { //usage: delMin(mins)
-//    finsihtime.setTime(finsihtime.getTime() - (m * 60 * 1000));
-//}
 
 
 //Upload Countdown
@@ -228,7 +199,7 @@ function getTimeRemaining(timeup) {
 function runtimer(timeup) {
     const timeinterval = setInterval(function() { //start timer
         const t = getTimeRemaining(timeup);
-        console.log(t.millisec);
+        //console.log(t.millisec); (this was for debugging)
         if (t.millisec <= 0) { //stop timer at end
             document.getElementById('time').innerHTML = "You can upload now";
             document.getElementById('upload-label').style.backgroundColor = "blue";
@@ -237,8 +208,8 @@ function runtimer(timeup) {
             //uploadState = 1; //enable upload
             clearInterval(timeinterval);
             if (uploadState == 0) {
-                document.getElementById("uploadState").value = 1; //type: int ////////////////////////////////////////////////////////////////////////////////////////////////////
-                document.getElementById("uploadStateForm").submit();
+                document.getElementById("uploadState").value = 1; //type: int //Set Upload State to [1=Enabled] if Disabled
+                document.getElementById("uploadStateForm").submit(); //Submit to database
             }
         } else if (t.millisec > 3600000) {
             //uploadState = 0; //disable upload if there's still time left (for refresh)
@@ -264,14 +235,14 @@ function runtimer(timeup) {
     }, 1000);
 }
 
+//Debug
 console.log('ok: ' + ok);
 console.log('notok: ' + notok);
 console.log('uploadState: ' + uploadState);
 console.log('finishtime: ' + finsihtime);
 console.log('image: url("../media/' + image + '")');
-// document.getElementById("timeLeftInput").value = finsihtime.toString();
 console.log(document.getElementById("timeLeftInputOk").value);
 
 updatebar();
-document.getElementById('image').style.backgroundImage = 'url("../media/' + image + '")';
-runtimer(finsihtime);
+document.getElementById('image').style.backgroundImage = 'url("../media/' + image + '")'; //Load Database Image
+runtimer(finsihtime); //Load timer

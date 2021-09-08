@@ -3,6 +3,12 @@ from django.http import HttpResponse
 from .models import Status
 
 # Create your views here.
+
+
+#Retrieve Upload Status: 0 = Disabled, 1 = Enabled
+#Retrieve Ok & Not Ok count
+#Retrieve Image
+#Retrieve DateTime Deadline (text)
 def main_view(request):
     stat = Status.objects.get(pk=1)
     context = {
@@ -12,35 +18,33 @@ def main_view(request):
         'uploadstate': stat.uploadState,
         'dbimage': stat.image
     }
-    #return HttpResponse('uploadtime?')
     return render(request, 'index.html', context)
 
 def about_view(request):
-    #return HttpResponse('uploadtime?')
     return render(request, 'about.html')
     
 def contact_view(request):
-    #return HttpResponse('uploadtime?')
     return render(request, 'contact.html')
 
+#Increment Ok count & set time deadline (if there's a new deadline) 
 def press_ok(request):
     stat = Status.objects.get(pk=1)
     if request.method == "POST":
         stat.ok += 1
-        # stat.uploadState = request.POST['uploadstate']
         stat.timeLeft = request.POST['timeleftin']
         stat.save()
     return redirect("/")
 
+#Increment Not Ok count & set time deadline (if there's a new deadline) 
 def press_notok(request):
     stat = Status.objects.get(pk=1)
     if request.method == "POST":
         stat.notok += 1
-        # stat.uploadState = request.POST['uploadstate']
         stat.timeLeft = request.POST['timeleftin']
         stat.save()
     return redirect("/")
 
+#Set/Change Upload State: 0 = Disabled, 1 = Enabled
 def uploadset(request):
     stat = Status.objects.get(pk=1)
     if request.method == "POST":
@@ -48,6 +52,9 @@ def uploadset(request):
         stat.save()
     return redirect("/")
 
+#Upload Image
+#Reset Counters to 0 & disable upload
+#Set new deadline (default)
 def upload(request):
     stat = Status.objects.get(pk=1)
     if request.method == "POST":
