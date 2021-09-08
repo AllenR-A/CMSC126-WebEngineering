@@ -1,3 +1,4 @@
+//Parse retrieved [databasetime] text as a Date Object
 let finsihtime = new Date(databasetime);
 
 ///Upload function is in line 69
@@ -60,33 +61,32 @@ let pMill = phtime.getUTCMilliseconds();
 let maxtime = new Date(Date.UTC(pYear, pMonth, pDay, 15, 59, 59, 999)); //15+8 = 23 for GMT+8
 let defaulttime = new Date(Date.UTC(pYear, pMonth, pDay, pHour + 1, pMin, pSec, pMill)); //(add hours to current time)
 
-//let finsihtime = new Date("{{ timeleft }}");
-
 console.log("Current: " + phtime);
 console.log("MAX: " + maxtime);
 console.log("End Time: " + finsihtime);
 
-function upload() { //Upload Button
+//===================================Upload Button===================================
+function upload() {
     if (uploadState == 0) {
         alert("You can't upload yet.");
     } else if (uploadState == 1) {
-        document.getElementById("timeLeftUploadIn").value = defaulttime.toString(); //type: text ////////////////////////////////////////////////////////////////////////////////////////////////////
-        // alert("Upload button was pressed, but upload isn't implemented yet.");
+        document.getElementById("timeLeftUploadIn").value = defaulttime.toString(); //type: text //Reset deadline to 1h from current time (using worldtimeapi.org)
     }
 }
 
-//updates bar and upload button every click
+//==========Updates ok/notok visualiser bar and upload button every click==========
 function updatebar() {
     total = ok + notok;
     let percent = ((ok / total) * 100).toFixed();
     document.getElementById("okay").style.width = percent + "%";
-    console.log(percent + "%");
-    // console.log('test');
-    console.log(total);
-    console.log('updatebar finish: ' + finsihtime);
+    //Debug stuff
+    console.log('Ok Percentage: ' + percent + "%");
+    console.log('Total Reactions: ' + total);
+    // console.log('updatebar finish: ' + finsihtime);
 }
 
-function addDel(selector) { //Increment Ok/Not Ok & set deadline (keep passing selector until it reaches [else statement of total > 24] or maxtrigger functions)
+//Increment Ok/Not Ok & set deadline (keep passing selector until it reaches [else statement of total > 24] or maxtrigger functions)
+function addDel(selector) {
     total = ok + notok;
     let percent = ((ok / total) * 100).toFixed();
     if (total >= 24) { //This is set to [>= 24] so that it runs just before a total of 25 (kinda giving the ilusion that it ran when reaching 25)
@@ -175,18 +175,15 @@ function addHr(h) { //usage: addHr(hour)
     finsihtime.setTime(finsihtime.getTime() + (h * 60 * 60 * 1000)); //Add h hours
     document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text //Add h hours to Ok button form time
     document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text //Add h hours to Not Ok button form time
-    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text //Add h hours to Upload form time
 }
 
 function delHr(h) { //usage: delHr(hour)
     finsihtime.setTime(finsihtime.getTime() - (h * 60 * 60 * 1000)); //Remove h hours
     document.getElementById("timeLeftInputOk").value = finsihtime.toString(); //type: text //Remove h hours to Ok button form time
     document.getElementById("timeLeftInputNotOk").value = finsihtime.toString(); //type: text //Remove h hours to Not Ok button form time
-    document.getElementById("timeLeftUploadIn").value = finsihtime.toString(); //type: text //Remove h hours to Upload form time
 }
 
-
-//Upload Countdown
+//===================================Upload Countdown===================================
 function getTimeRemaining(timeup) {
     const millisec = Date.parse(timeup) - new Date().getTime();
     const seconds = Math.floor((millisec / 1000) % 60);
@@ -205,30 +202,23 @@ function runtimer(timeup) {
             document.getElementById('upload-label').style.backgroundColor = "blue";
             document.getElementById('text').style.padding = "0 35px";
             document.getElementById('icon').style.padding = "0 15px";
-            //uploadState = 1; //enable upload
             clearInterval(timeinterval);
             if (uploadState == 0) {
                 document.getElementById("uploadState").value = 1; //type: int //Set Upload State to [1=Enabled] if Disabled
                 document.getElementById("uploadStateForm").submit(); //Submit to database
             }
         } else if (t.millisec > 3600000) {
-            //uploadState = 0; //disable upload if there's still time left (for refresh)
             document.getElementById('time').innerHTML = 'Time left: ' + t.hour + 'hrs ' + t.minute +
                 'min ' + t.seconds + 'sec';
-            //document.getElementById('upload-label').style.backgroundColor = "grey";
             document.getElementById('text').style.padding = "0 15px";
             document.getElementById('icon').style.padding = "0 15px";
         } else if (t.millisec > 60000) {
-            //uploadState = 0; //disable upload if there's still time left (for refresh)
             document.getElementById('time').innerHTML = 'Time left: ' + t.minute +
                 'min ' + t.seconds + 'sec';
-            //document.getElementById('upload-label').style.backgroundColor = "grey";
             document.getElementById('text').style.padding = "0 15px";
             document.getElementById('icon').style.padding = "0 15px";
         } else if (t.millisec > 1000) {
-            //uploadState = 0; //disable upload if there's still time left (for refresh)
             document.getElementById('time').innerHTML = 'Time left: ' + t.seconds + 'sec';
-            //document.getElementById('upload-label').style.backgroundColor = "grey";
             document.getElementById('text').style.padding = "0 15px";
             document.getElementById('icon').style.padding = "0 15px";
         }
@@ -243,6 +233,7 @@ console.log('finishtime: ' + finsihtime);
 console.log('image: url("../media/' + image + '")');
 console.log(document.getElementById("timeLeftInputOk").value);
 
-updatebar();
+//Run JavaScript
+updatebar(); //Update Ok/NotOk Visualiser Bar
 document.getElementById('image').style.backgroundImage = 'url("../media/' + image + '")'; //Load Database Image
 runtimer(finsihtime); //Load timer
