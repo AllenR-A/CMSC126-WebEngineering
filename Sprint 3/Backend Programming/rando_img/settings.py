@@ -29,6 +29,11 @@ SECRET_KEY = 'django-insecure-@&(#^zjnnhmql$*8$wzf1@p^mx0tj6wcye+064bv24=7wnxc%1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda r: False,  # disables it
+    # '...
+}
+
 ALLOWED_HOSTS = []
 
 

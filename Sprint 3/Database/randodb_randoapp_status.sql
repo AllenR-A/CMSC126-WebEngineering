@@ -1,0 +1,2 @@
+insert into randodb.randoapp_status (id, image, ok, notok, uploadState, timeLeft)
+values  (1, 'uploaded_image/placeholder.jpg', 0, 0, 1, 'Wed Sep 07 2021 00:00:00 GMT+0800 (Philippine Standard Time)');
