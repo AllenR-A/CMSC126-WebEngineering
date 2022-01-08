@@ -1,5 +1,5 @@
-# CMSC126-WebEngineering
-A CMSC 126 Project using Scrum
+# CMSC126&128 -WebEngineering
+A CMSC 126 Project using Scrum & CMSC 128 Laboratory
 
 ## Sprints
 + [Sprint 1](https://www.youtube.com/playlist?list=PLwj66Tp6NV32dTzMi5anvZfrTU5LsNDJq) [DONE] <br />
@@ -17,3 +17,14 @@ A CMSC 126 Project using Scrum
   - [SCRUM 3 video](https://youtu.be/Sa8evcIhLeA)
   - [Backend Programming video - Django](https://youtu.be/QDwXEHp2FO4)
   - [Database video - MySQL using Django ORM](https://youtu.be/Y6mgktxTIII)
+
+## 128 Labs
+
++ [Lab 1](https://youtu.be/RZNJ0C0kosU) [DONE] <br />
+  - New files are located in the Sprint 3 folder.
+
++ Lab 2 - See the 3 Sprints above [DONE] <br />
+
++ [Lab 3](https://youtu.be/) [underway] <br />
+
++ [Lab 4](https://youtu.be/) [underway] <br />
