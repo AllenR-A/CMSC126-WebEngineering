@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% load static %} {% include 'session_security/all.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>RandoIMG | Log out</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .home_btn {
+            width: 65%;
+            background: #33ccff !important;
+            color: white !important;
+            border-color: #33ccff;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body style="background-color:rgb(69, 155, 144);">
+    <div class="center">
+        <header>
+        </header>
+        <main class="centervert">
+            <div class="logout roundborder">
+                <form class="center-text" method="POST">
+                    {% csrf_token %} {% if inactive == 1 %}
+                    <!--- <h1>You have been logged out.</h1>
+                    <p>You have been inactive for 5 minutes.</p> --->
+                    {% else %}
+                    <h1 style="margin: 0 10px 10px 10px;">You have logged out.</h1>
+                    {% endif %}
+                    <input id="gotoHome" class="btn home_btn" type="submit" value="Go to Home">
+                </form>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+    <script>
+        //let inactive = parseInt("{{inactive}}"); //Used to check if logged out for inactivity
+    </script>
+</body>
+
+</html>

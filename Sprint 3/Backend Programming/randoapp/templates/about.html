@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% load static %} {% include 'session_security/all.html' %}
 
 <head>
     <meta charset="UTF-8">
@@ -14,8 +15,13 @@
             <nav class="navbar roundborder">
                 <h1 class="floatl">About</h1>
                 <ul class="navlink">
-                    <li class="marginr"><a href="../">RandoIMG</a></li>
-                    <li class=""><a href="../contact/">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="marginr"><a href="../logout/">Log Out</a></li>
+                    {% else %}
+                    <li class="marginr"><a href="../login/">Log In / Sign Up</a></li>
+                    {% endif %}
+                    <li><a href="../">RandoIMG</a></li>
+                    <li><a href="../contact/">Contact</a></li>
                 </ul>
             </nav>
         </header>
@@ -23,20 +29,38 @@
             <br>
             <br>
             <br>
-            <br>
-            <br>
-            <br>
             <h3>The heck's this all about?</h3>
             <p>This site has some image uploaded unto it that you people can say OK or NOT OK to. If it's bad enough, the image can be replaced by a new one earlier but if it's good, it stays up longer.</p>
             <br>
-            <h3>Creator</h3>
+            <h2>Creator</h2>
             <img class="roundborder creatorimg" src="{% static 'img/aboutCreator.jpg'%}" alt="a portrait of the creator" height="250">
             <p>Allen Royce<br>2nd Year U.P. Student</p>
             <p>I like messing with tech-related stuff</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br> {% if user.is_authenticated %}
+            <h2>Your Profile</h2>
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.email }}</p>
+            <br>
+            <p>In a possible future implementation, comments will be enabled for logged-in users.</p>
+            {% else %} {% endif %}
         </main>
         <footer>
         </footer>
     </div>
+    <script>
+        //let inactive = parseInt("{{inactive}}"); //Used to check if logged out for inactivity
+    </script>
 </body>
 
 </html>

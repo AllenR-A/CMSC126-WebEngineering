@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% load static %} {% include 'session_security/all.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>RandoIMG | Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <style>
+        .form_container {
+            margin-top: 20px;
+        }
+        
+        #form-title {
+            color: #fff;
+        }
+        
+        .login_btn {
+            width: 100%;
+            background: #33ccff !important;
+            color: white !important;
+            border-color: #33ccff;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 25px;
+        }
+        
+        .login_btn:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+        
+        .login_container {
+            padding: 0 2rem;
+        }
+        
+        .input-group-text {
+            background: #33ccff !important;
+            color: white !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        }
+        
+        .input_user,
+        .input_pass:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+        /*==============FANCY CHECKBOX==============*/
+        
+        .form-control .boxform-control {
+            font-family: system-ui, sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1.1;
+            display: grid;
+            grid-template-columns: 1em auto;
+            gap: 0.5em;
+        }
+        
+        input[type="checkbox"] {
+            appearance: none;
+            /*--↑ Reset native checkbox style ↑--*/
+            background-color: #7293e1;
+            margin: 0;
+            font: inherit;
+            color: #000000;
+            width: 1em;
+            height: 1em;
+            border-radius: 0.15em;
+            display: grid;
+            place-content: center;
+        }
+        
+        input[type="checkbox"]::before {
+            /*Slashed Eye*/
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(1)translateX(.42em);
+            transition: 70ms transform ease-in-out;
+            /*--------↓ COLOR OF EYE ↓--------*/
+            box-shadow: inset 1em 1em #000000;
+            clip-path: polygon(5% 47%, 4% 44%, 6% 40%, 11% 36%, 21% 31%, 29% 28%, 38% 24%, 47% 24%, 53% 25%, 59% 26%, 41% 48%, 40% 52%, 42% 51%, 45% 47%, 69% 17%, 80% 5%, 76% 14%, 65% 29%, 39% 63%, 43% 60%, 60% 38%, 62% 43%, 64% 50%, 60% 57%, 54% 61%, 47% 63%, 48% 66%, 54% 66%, 64% 66%, 71% 64%, 80% 61%, 85% 55%, 86% 50%, 82% 44%, 76% 40%, 70% 36%, 64% 34%, 68% 30%, 74% 33%, 81% 36%, 88% 42%, 94% 51%, 90% 58%, 82% 65%, 71% 69%, 58% 72%, 44% 73%, 30% 72%, 20% 85%, 15% 87%, 16% 83%, 25% 71%, 21% 68%, 10% 63%, 4% 59%, 9% 55%, 16% 59%, 20% 62%, 28% 64%, 32% 64%, 35% 61%, 35% 57%, 33% 54%, 32% 49%, 33% 44%, 36% 41%, 39% 36%, 44% 33%, 41% 30%, 35% 31%, 28% 33%, 20% 36%, 14% 41%, 10% 45%);
+        }
+        
+        input[type="checkbox"]:checked::before {
+            /*Open Eye*/
+            transform: scale(1) translateX(.4em);
+            clip-path: polygon(3% 39%, 17% 31%, 35% 26%, 52% 23%, 71% 26%, 82% 30%, 90% 36%, 97% 44%, 90% 58%, 78% 67%, 60% 70%, 42% 71%, 28% 68%, 18% 65%, 9% 57%, 8% 51%, 14% 51%, 22% 58%, 31% 63%, 42% 65%, 55% 65%, 66% 63%, 77% 61%, 86% 54%, 89% 45%, 83% 38%, 67% 31%, 56% 30%, 62% 38%, 64% 46%, 62% 55%, 54% 59%, 45% 59%, 39% 55%, 35% 51%, 34% 43%, 38% 36%, 45% 31%, 37% 31%, 28% 33%, 18% 37%, 9% 42%);
+        }
+    </style>
+</head>
+
+<body style="background-color:rgb(94, 200, 94);">
+    <div class="center">
+        <header>
+            <nav class="navbar roundborder">
+                <h1 class="floatl" style="color: white;">Log In</h1>
+                <ul class="navlink">
+                    <li class="marginr"><a href="../">RandoIMG</a></li>
+                    <li class=""><a href="../contact/">Contact</a></li>
+                    <li class=""><a href="../about/">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="centervert">
+            <div class="login roundborder">
+                <form id='login' class="center-text form-group" method="POST">
+                    {% csrf_token %}
+                    <h2>Log-in here:</h2>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="username" placeholder="Username...">
+                    </div>
+                    <div class="input-group mb-2 form-control">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input id="id_password" type="password" name="password" placeholder="Password...">
+                        <input class="boxform-control" type="checkbox" id="box" onclick="reveal()">
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <input class="btn login_btn" type="submit" value="Log In">
+                    </div>
+                    {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                    {% endfor %}
+                    <p>Don't have an account? <a style="font-size: 16px; text-decoration: underline;" href="../signup/">Sign Up!</a></p>
+                </form>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+    <script>
+        function reveal() {
+            if (document.getElementById('box').checked) {
+                document.getElementById("id_password").type = 'text';
+            } else
+                document.getElementById("id_password").type = 'password';
+        }
+        //let inactive = parseInt("{{inactive}}"); //Used to check if logged out for inactivity
+    </script>
+</body>
+
+</html>

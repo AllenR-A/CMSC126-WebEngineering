@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% load static %} {% include 'session_security/all.html' %}
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,14 @@
     <title>RandoIMG</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<style>
+    input {
+        /* Moves it out of the way instead of using "display:none" to hide to prevent validation issues*/
+        position: fixed;
+        right: 100%;
+        bottom: 100%;
+    }
+</style>
 
 <body style="background-color:lightblue;">
     <div class="center">
@@ -18,11 +27,24 @@
             <nav class="navbar roundborder">
                 <h1 class="floatl">RandoIMG</h1>
                 <ul class="navlink">
-                    <li class="marginr"><a href="contact/">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="marginr"><a href="logout/">Log Out</a></li>
+                    {% else %}
+                    <li class="marginr"><a href="login/">Log In / Sign Up</a></li>
+                    {% endif %}
+                    <li class=""><a href="contact/">Contact</a></li>
                     <li class=""><a href="about/">About</a></li>
                 </ul>
             </nav>
         </header>
+        <div class="center-text">
+            {% for message in messages %}
+            <p id="messages" style="margin:15px 0 0 0">{{message}}</p>
+            {% endfor %}
+            <br>
+            <br>
+            <h3 style="margin:0">Users are automatically logged-out after 5 mins.</h3>
+        </div>
         <main>
             <br>
             <br>
@@ -91,6 +113,7 @@
         let uploadState = parseInt("{{uploadstate}}");
         let databasetime = "{{timeleft}}";
         let image = "{{dbimage}}";
+        //let inactive = parseInt("{{inactive}}"); //Used to check if logged out for inactivity
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>

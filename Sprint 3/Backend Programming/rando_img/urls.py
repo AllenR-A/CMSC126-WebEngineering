@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('randoapp.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('session_security/', include('session_security.urls')),
 ]
 
 # For the uploaded image
