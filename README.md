@@ -26,6 +26,6 @@ A CMSC 126 Project using Scrum & CMSC 128 Laboratory
 
 + Lab 2 - See the 3 Sprints above [DONE] <br />
 
-+ [Lab 3](https://youtu.be/) [underway] <br />
++ [Lab 3](https://youtu.be/G9UhkXDZAao) [DONE] <br />
 
 + [Lab 4](https://youtu.be/) [underway] <br />
